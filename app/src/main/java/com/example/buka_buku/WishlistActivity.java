@@ -63,12 +63,14 @@ public class WishlistActivity extends AppCompatActivity {
         });
 
         btnCheckout.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(WishlistActivity.this, CheckoutActivity.class);
                 startActivity(intent);
             }
         });
     }
+
     private void loadWishlistItems() {
         String userId = firebaseAuth.getCurrentUser().getUid();
         DatabaseReference wishlistRef = databaseReference.child("wishlist").child(userId);
@@ -89,10 +91,8 @@ public class WishlistActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Handle possible errors
-
                 Toast.makeText(WishlistActivity.this, "Failed to load wishlist books", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
 }
